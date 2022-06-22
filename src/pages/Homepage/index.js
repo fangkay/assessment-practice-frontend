@@ -14,6 +14,29 @@ export const Homepage = () => {
     dispatch(fetchSpaces);
   }, [dispatch]);
 
+  if (!spaces) return <h3>Loading</h3>;
+
   console.log(spaces);
-  return <h1>This is the homepage</h1>;
+  return (
+    <div>
+      <h1>This is the homepage</h1>
+      {!spaces
+        ? "Loading"
+        : spaces.map((space) => {
+            return (
+              <div
+                key={space.id}
+                style={{
+                  backgroundColor: space.backgroundColor,
+                  color: space.color,
+                }}
+              >
+                <p>{space.title}</p>
+                <p>{space.description}</p>
+                <button>Visit space</button>
+              </div>
+            );
+          })}
+    </div>
+  );
 };
