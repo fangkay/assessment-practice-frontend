@@ -14,6 +14,7 @@ import { getUserWithStoredToken } from "./store/user/actions";
 import HeroBanner from "./components/HeroBanner";
 import { Homepage } from "./pages/Homepage";
 import { SpaceDetails } from "./pages/SpaceDetails";
+import { MySpace } from "./pages/MySpace";
 
 const Other = () => (
   <HeroBanner>
@@ -37,6 +38,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route exact path="/space/details/:id" element={<SpaceDetails />} />
+        <Route exact path="/me" element={<MySpace />} />
         <Route path="/other" element={<Other />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />

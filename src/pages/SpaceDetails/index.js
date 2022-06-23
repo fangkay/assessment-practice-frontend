@@ -4,7 +4,6 @@ import { fetchSpaceDetails } from "../../store/space/actions";
 
 import { useSelector } from "react-redux";
 import { selectSpacesDetails } from "../../store/space/selectors";
-import { selectSpacesStories } from "../../store/space/selectors";
 import { useParams } from "react-router-dom";
 
 export const SpaceDetails = () => {

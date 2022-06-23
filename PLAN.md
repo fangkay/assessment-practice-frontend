@@ -20,8 +20,8 @@
 ```js
 const innitialState = {
   spaces: [] || null,
-  spaceDetails: {} || null
-}
+  spaceDetails: {} || null,
+};
 ```
 
 1. Set up the endpoint in the backend and test it (http)
@@ -33,7 +33,7 @@ const innitialState = {
 7. Go back to thunk, dispatch it to the reducer
 8. Write a case in the reducer
 9. Create a selector to select spaces
-10. Import the selector on the page, pass it to useSelector 
+10. Import the selector on the page, pass it to useSelector
 11. Map the data
 
 ## Feature 2
@@ -41,13 +41,11 @@ const innitialState = {
 1. Set up the endpoint in the backend and test it (http)
 2. Create a new component/page, add to app.js, register a page
 3. Create a new property in the reducer `spaceDetails`
-4. Write a thunk to fetch data (spaceDEtails)
+4. Write a thunk to fetch data (spaceDetails)
 5. Import the thunk in the page, pass it to useEffect and dispatch it
 6. Check the response
 7. Go back to thunk, dispatch it to the reducer
 8. Write a case in the reducer
 9. Create a selector to select spaceDetails
-10. Import the selector on the page, pass it to useSelector 
+10. Import the selector on the page, pass it to useSelector
 11. Display the data
-
-

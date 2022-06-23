@@ -14,7 +14,6 @@ export const spaceSlice = createSlice({
     },
     spacesFetched: (state, action) => {
       state.spaces = action.payload;
-      // console.log("fetched spaces", action);
     },
     spacesDetailsFetched: (state, action) => {
       state.spaceDetails = action.payload;
