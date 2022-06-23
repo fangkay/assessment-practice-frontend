@@ -51,6 +51,7 @@ export const SpaceDetails = () => {
               <img src={story.imageUrl} alt={story.name} />
               <h3>{story.name}</h3>
               <p>{story.content}</p>
+              <p>{story.createdAt}</p>
             </div>
           );
         })}
