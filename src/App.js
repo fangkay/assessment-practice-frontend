@@ -13,12 +13,8 @@ import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
 import HeroBanner from "./components/HeroBanner";
 import { Homepage } from "./pages/Homepage";
+import { SpaceDetails } from "./pages/SpaceDetails";
 
-const Home = () => (
-  <HeroBanner>
-    <h1>Home</h1>
-  </HeroBanner>
-);
 const Other = () => (
   <HeroBanner>
     <h1>Other</h1>
@@ -39,12 +35,12 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Homepage />} />
+        <Route exact path="/space/details/:id" element={<SpaceDetails />} />
         <Route path="/other" element={<Other />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-      <Homepage />
     </div>
   );
 }

@@ -16,8 +16,13 @@ export const spaceSlice = createSlice({
       state.spaces = action.payload;
       // console.log("fetched spaces", action);
     },
+    spacesDetailsFetched: (state, action) => {
+      state.spaceDetails = action.payload;
+      console.log("fetched spaces details", action);
+    },
   },
 });
 
-export const { startLoading, spacesFetched } = spaceSlice.actions;
+export const { startLoading, spacesFetched, spacesDetailsFetched } =
+  spaceSlice.actions;
 export default spaceSlice.reducer;

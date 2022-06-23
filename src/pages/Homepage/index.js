@@ -4,6 +4,7 @@ import { fetchSpaces } from "../../store/space/actions";
 
 import { useSelector } from "react-redux";
 import { selectSpaces } from "../../store/space/selectors";
+import { Link } from "react-router-dom";
 
 export const Homepage = () => {
   const dispatch = useDispatch();
@@ -16,11 +17,11 @@ export const Homepage = () => {
 
   if (!spaces) return <h3>Loading</h3>;
 
-  console.log(spaces);
+  // console.log(spaces);
   return (
     <div>
       <h1>This is the homepage</h1>
-      {!spaces
+      {!spaces.length
         ? "Loading"
         : spaces.map((space) => {
             return (
@@ -33,7 +34,7 @@ export const Homepage = () => {
               >
                 <p>{space.title}</p>
                 <p>{space.description}</p>
-                <button>Visit space</button>
+                <Link to={`/space/details/${space.id}`}>Visit space</Link>
               </div>
             );
           })}
