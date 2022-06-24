@@ -158,6 +158,9 @@ export const submitStory = (name, content, imageUrl, token, spaceId) => {
         }
       );
       console.log(response);
+      dispatch(
+        showMessageWithTimeout("success", false, "VERY COOL STORY BRO", 1500)
+      );
       dispatch(updateStory(response.data));
     } catch (e) {
       console.log(e.message);

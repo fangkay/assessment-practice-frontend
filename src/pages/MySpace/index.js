@@ -32,12 +32,14 @@ export const MySpace = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(submitStory(name, content, image, token, space.id));
+    setName("");
+    setContent("");
+    setImage("");
   };
 
   return (
     <div>
       <h1>{space.title}</h1>
-      <button onClick={showForm}>Post a cool story bro</button>
       {displayForm ? (
         <div>
           <form onSubmit={handleSubmit}>
@@ -65,25 +67,27 @@ export const MySpace = () => {
             <button type="submit">Submit</button>
             <img src={image} alt=""></img>
           </form>
+          <button onClick={showForm}>Hide form</button>
         </div>
       ) : (
-        stories.map((story) => {
-          return (
-            <div key={story.id}>
-              <img src={story.imageUrl} alt={story.name}></img>
-              <h2>{story.name}</h2>
-              <p>{story.content}</p>
-              <button
-                onClick={() => {
-                  dispatch(deleteUserStory(story.id, space.id));
-                }}
-              >
-                Delete story
-              </button>
-            </div>
-          );
-        })
+        <button onClick={showForm}>Post a cool story bro</button>
       )}
+      {stories.map((story) => {
+        return (
+          <div key={story.id}>
+            <img src={story.imageUrl} alt={story.name}></img>
+            <h2>{story.name}</h2>
+            <p>{story.content}</p>
+            <button
+              onClick={() => {
+                dispatch(deleteUserStory(story.id, space.id));
+              }}
+            >
+              Delete story
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 };

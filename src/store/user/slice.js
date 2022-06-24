@@ -33,8 +33,8 @@ export const userSlice = createSlice({
       state.space.stories = newStoriesArray;
     },
     updateStory: (state, action) => {
-      const addStoryArray = [...state.space.stories, action.payload];
-      state.space.stories = addStoryArray;
+      const newStory = action.payload.space.stories;
+      state.space.stories = newStory;
     },
   },
 });
