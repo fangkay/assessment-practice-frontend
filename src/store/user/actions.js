@@ -3,7 +3,13 @@ import axios from "axios";
 import { selectToken } from "./selectors";
 import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/actions";
-import { loginSuccess, logOut, tokenStillValid, deleteStory } from "./slice";
+import {
+  loginSuccess,
+  logOut,
+  tokenStillValid,
+  deleteStory,
+  updateStory,
+} from "./slice";
 
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
@@ -135,6 +141,24 @@ export const deleteUserStory = (storyId, spaceId) => {
     try {
       await axios.delete(`${apiUrl}/space/${storyId}`);
       dispatch(deleteStory(storyId));
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+};
+
+export const submitStory = (name, content, imageUrl, token, spaceId) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.post(
+        `${apiUrl}/auth/me/${spaceId}`,
+        { name, content, imageUrl, spaceId },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      console.log(response);
+      dispatch(updateStory(response.data));
     } catch (e) {
       console.log(e.message);
     }
