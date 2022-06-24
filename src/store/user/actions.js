@@ -3,7 +3,7 @@ import axios from "axios";
 import { selectToken } from "./selectors";
 import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/actions";
-import { loginSuccess, logOut, tokenStillValid } from "./slice";
+import { loginSuccess, logOut, tokenStillValid, deleteStory } from "./slice";
 
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
@@ -126,6 +126,17 @@ export const getUserWithStoredToken = () => {
       // get rid of the token by logging out
       dispatch(logOut());
       dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const deleteUserStory = (storyId, spaceId) => {
+  return async (dispatch, getState) => {
+    try {
+      await axios.delete(`${apiUrl}/space/${storyId}`);
+      dispatch(deleteStory(storyId));
+    } catch (e) {
+      console.log(e.message);
     }
   };
 };

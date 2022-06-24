@@ -1,8 +1,10 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUserStory } from "../../store/user/actions";
 import { selectUserSpace } from "../../store/user/selectors";
 
 export const MySpace = () => {
   const space = useSelector(selectUserSpace);
+  const dispatch = useDispatch();
 
   if (!space)
     return (
@@ -12,18 +14,24 @@ export const MySpace = () => {
     );
 
   const { stories } = space;
-
-  console.log(stories);
+  console.log(space);
 
   return (
     <div>
-      <h1>This is my space</h1>
+      <h1>{space.title}</h1>
       {stories.map((story) => {
         return (
           <div key={story.id}>
             <img src={story.imageUrl} alt={story.name}></img>
             <h2>{story.name}</h2>
             <p>{story.content}</p>
+            <button
+              onClick={() => {
+                dispatch(deleteUserStory(story.id, space.id));
+              }}
+            >
+              Delete story
+            </button>
           </div>
         );
       })}

@@ -17,7 +17,6 @@ export const Homepage = () => {
 
   if (!spaces) return <h3>Loading</h3>;
 
-  // console.log(spaces);
   return (
     <div>
       <h1>This is the homepage</h1>

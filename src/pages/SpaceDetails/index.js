@@ -29,9 +29,9 @@ export const SpaceDetails = () => {
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
 
-  console.log(stories);
+  // console.log(stories);
 
-  console.log(spaceDetails);
+  // console.log(spaceDetails);
 
   return (
     <div>
