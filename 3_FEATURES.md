@@ -65,12 +65,12 @@ We are building a webapp where people can have their own space and post stories 
 
 ### 4. As a logged in user I want to be able to view my space and delete my own stories
 
-- When you are logged in, there should be a link in the navbar to `My space`
-- When you click that link you see the space belonging in to your user and its stories
-- Ideally, we add the user's space to the information being fetched when we login
-- That means modifying the `/me` and `/login` endpoints to also send your space in the response
+- When you are logged in, there should be a link in the navbar to `My space` <!-- create a condition (token) to decide if user is logged in or not  -->
+- When you click that link you see the space belonging in to your user and its stories <!-- we will need a selector for the user  -->
+- Ideally, we add the user's space to the information being fetched when we login <!-- modify login endpoint to include Space and Stories -->
+- That means modifying the `/me` and `/login` endpoints to also send your space in the response <!-- we do this to have consistent responses -->
 - Alternatively fetch the data from the endpoint set up for feature #2 (detail page)
-- Users also want to be able to delete their own stories.
+- Users also want to be able to delete their own stories. <!-- 1. endpoint in the backend, 2. thunk to delete, 3. case in the reducer -->
 
 | Criteria                                                                                                 | Points |
 | -------------------------------------------------------------------------------------------------------- | ------ |
