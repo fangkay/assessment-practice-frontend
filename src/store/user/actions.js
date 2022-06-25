@@ -167,3 +167,27 @@ export const submitStory = (name, content, imageUrl, token, spaceId) => {
     }
   };
 };
+
+export const editSpace = (
+  backgroundColor,
+  color,
+  title,
+  description,
+  token,
+  spaceId
+) => {
+  return async (dispatch, getState) => {
+    try {
+      const token = getState().user.token;
+      const response = await axios.put(
+        `${apiUrl}/space/${spaceId}`,
+        { backgroundColor, color, title, description, token, spaceId },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      console.log(response.data);
+      dispatch(editSpace(response.data));
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+};

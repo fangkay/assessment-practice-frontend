@@ -36,6 +36,9 @@ export const userSlice = createSlice({
       const newStory = action.payload.space.stories;
       state.space.stories = newStory;
     },
+    editSpace: (state, action) => {
+      state.user.space = action.payload;
+    },
   },
 });
 

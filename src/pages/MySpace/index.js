@@ -4,6 +4,7 @@ import { deleteUserStory } from "../../store/user/actions";
 import { selectUserSpace } from "../../store/user/selectors";
 import { submitStory } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
+import { editSpace } from "../../store/user/actions";
 
 export const MySpace = () => {
   const space = useSelector(selectUserSpace);
@@ -11,10 +12,19 @@ export const MySpace = () => {
   const token = useSelector(selectToken);
 
   const [displayForm, setDisplayForm] = useState(false);
-
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
+
+  const [editForm, setEditForm] = useState(false);
+  const [updatedBackgroundColor, setUpdatedBackgroundColor] = useState("");
+  const [updatedColor, setUpdatedColor] = useState("");
+  const [updatedTitle, setUpdatedTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  const displayEditForm = () => {
+    setEditForm(!editForm);
+  };
 
   const showForm = () => {
     setDisplayForm(!displayForm);
@@ -37,9 +47,72 @@ export const MySpace = () => {
     setImage("");
   };
 
+  const handleEdit = (event) => {
+    event.preventDefault();
+    dispatch(
+      editSpace(
+        updatedBackgroundColor,
+        updatedColor,
+        updatedTitle,
+        description,
+        token,
+        space.id
+      )
+    );
+    setUpdatedBackgroundColor("");
+    setUpdatedColor("");
+    setUpdatedTitle("");
+    setDescription("");
+  };
   return (
     <div>
-      <h1>{space.title}</h1>
+      <div
+        style={{ backgroundColor: updatedBackgroundColor, color: updatedColor }}
+      >
+        <h1>{space.title}</h1>
+        <p>{space.description}</p>
+      </div>
+      {editForm ? (
+        <div>
+          <form onSubmit={handleEdit}>
+            <label for="backgroundColor">Background Color</label>
+            <input
+              name="backgroundColor"
+              value={updatedBackgroundColor}
+              type="color"
+              onChange={(e) => setUpdatedBackgroundColor(e.target.value)}
+            ></input>
+            <label for="color">Color</label>
+            <input
+              name="color"
+              value={space.color}
+              type="color"
+              onChange={(e) => setUpdatedColor(e.target.value)}
+            ></input>
+            <label for="title">Title</label>
+            <input
+              name="title"
+              value={space.title}
+              type="text"
+              onChange={(e) => setUpdatedTitle(e.target.value)}
+            ></input>
+            <label for="description">Description</label>
+            <input
+              name="description"
+              value={space.description}
+              type="text"
+              onChange={(e) => setDescription(e.target.value)}
+            ></input>
+            <button type="submit">Submit</button>
+            <img src={image} alt=""></img>
+          </form>
+          <button onClick={displayEditForm}>Hide</button>
+        </div>
+      ) : (
+        <div>
+          <button onClick={displayEditForm}>Edit my space</button>
+        </div>
+      )}
       {displayForm ? (
         <div>
           <form onSubmit={handleSubmit}>

@@ -6,3 +6,5 @@ export const selectUserSpace = (state) => {
   const checkSpace = state.user.space;
   return checkSpace;
 };
+
+export const selectUpdatedSpace = (state) => state.space;
